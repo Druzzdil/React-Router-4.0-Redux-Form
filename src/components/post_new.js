@@ -22,7 +22,7 @@ renderField(field){
           {...field.input}
         
         />
-        {field.meta.error}
+        {field.meta.touched ? field.meta.error : ""}
       </div>
     )
 }
@@ -78,6 +78,8 @@ function validate(values){
   }
   return error;
 }
+
+
 
 export default reduxForm({
   validate,
