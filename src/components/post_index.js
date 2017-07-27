@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchPosts } from '../actions/index';
 import _ from 'lodash';
+import {Link}  from 'react-router-dom'
 
  class PostIndex extends Component {
 
@@ -28,9 +29,12 @@ import _ from 'lodash';
 
 
   render() {
-    console.log(this.props.posts)
     return (
-      <div>Post piesek
+      <div>
+        <div className="text-xs-right">
+           <Link to="/post/new" className="btn btn-primary">Add a Post</Link>
+        </div>
+        <h3>Posts</h3>
         <ul className="list-group">
           {this.renderPost()}
         </ul>
