@@ -44,8 +44,6 @@ import {Link}  from 'react-router-dom'
 }
 
 
-
-
 function  mapStateToProps(state){
   return {posts: state.posts}
 }

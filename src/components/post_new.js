@@ -3,14 +3,17 @@ import { connect } from "react-redux";
 import { fetchPosts } from '../actions/index';
 import _ from 'lodash';
 import { Field, reduxForm } from 'redux-form'
-// const { DOM: { input, select, textarea } } = React
-//redux-form
-import { createStore, combineReducers } from 'redux'
+import {createPost} from '../actions';
+// if we import a single function from a file it has to be in curly braces - destructing
+// import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
 import {Link}  from 'react-router-dom'
 
 class PostNew extends Component {
+  constructor(props){
+    super(props)
+  }
 
 
 renderField(field){
@@ -28,20 +31,18 @@ renderField(field){
         </div>
       </div>
     )
-}
+} 
 
-onSubmit(values){
-  console.log(values)
-}
+ onSubmit(values) {
+    this.props.createPost(values, ()=>{
+      this.props.history.push('/');
+    })
+  }
 
   render() {
-    console.log(this.props, 'popopo')
     const {handleSubmit} = this.props
     return (
     <div>
-       <div className="text-xs-right">
-           <Link to="/" className="btn btn-primary">Back to Main Page</Link>
-        </div>
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field 
           label="Title For Post"
@@ -58,7 +59,8 @@ onSubmit(values){
           label="Post Content"
           component={this.renderField}
         />
-        <button type="submit" className="btn btn-primary">Save</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
+        <Link to="/" className="btn btn-danger">Cancel</Link>
       </form>
     </div>
     );
@@ -70,7 +72,7 @@ onSubmit(values){
 
 function validate(values){
   const error = {}
-  if (!values.title || values.title.length < 3) {
+  if (!values.title) {
     error.title = "enter the title that is at least 3 characters"
   }
   if (!values.categories) {
@@ -83,11 +85,13 @@ function validate(values){
 }
 
 
-
 export default reduxForm({
   validate,
   form: 'PostNewForm'
+})(
+  connect(null, {createPost})(PostNew)
+);
 
-})(PostNew)
+//this is some deep wierd shit!
 
 
