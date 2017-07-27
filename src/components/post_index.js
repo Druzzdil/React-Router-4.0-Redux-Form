@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {fetchPosts} from '../actions/index';
+
 
  class PostIndex extends Component {
+
+
+
+  componentDidMount(){
+    this.props.fetchPosts()
+  }
+
+
+
   render() {
+    console.log(this.props.fetchPosts, '===========')
     return (
-      <div>Post index</div>
+      <div>Post piesek</div>
     );
   }
 }
 
-export default PostIndex
+
+
+
+
+export default connect(null, {fetchPosts})(PostIndex);
