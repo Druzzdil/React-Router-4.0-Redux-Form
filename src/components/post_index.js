@@ -21,7 +21,7 @@ import _ from 'lodash';
   renderPost(){
      return _.map(this.props.posts, post => {
        return (
-          <li key={post.id}>{post.title}</li>
+          <li className="list-group-item"key={post.id}>{post.title}</li>
         )
      })
   }
@@ -31,7 +31,7 @@ import _ from 'lodash';
     console.log(this.props.posts)
     return (
       <div>Post piesek
-        <ul>
+        <ul className="list-group">
           {this.renderPost()}
         </ul>
       </div>
