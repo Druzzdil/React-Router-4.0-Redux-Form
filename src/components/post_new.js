@@ -8,6 +8,8 @@ import { Field, reduxForm } from 'redux-form'
 import { createStore, combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
+import {Link}  from 'react-router-dom'
+
 class PostNew extends Component {
 
 
@@ -26,6 +28,10 @@ renderField(field){
 
   render() {
     return (
+    <div>
+       <div className="text-xs-right">
+           <Link to="/" className="btn btn-primary">Back to Main Page</Link>
+        </div>
       <form>
         <Field 
           label="Title For Post"
@@ -42,8 +48,8 @@ renderField(field){
           label="Post Content"
           component={this.renderField}
         />
-
       </form>
+    </div>
     );
   }
 }
@@ -54,3 +60,5 @@ renderField(field){
 export default reduxForm(
   {form: 'PostNewForm'}
 )(PostNew)
+
+
