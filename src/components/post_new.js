@@ -39,8 +39,8 @@ renderField(field){
           component={this.renderField}
         />
         <Field 
-          name="tags" 
-          label="Tags"
+          name="categories" 
+          label="Categories"
           component={this.renderField}
         />
         <Field 
@@ -55,10 +55,31 @@ renderField(field){
 }
 
 
+//helpers functions
+
+function validate(values){
+  const error = {}
 
 
-export default reduxForm(
-  {form: 'PostNewForm'}
-)(PostNew)
+
+  if (!values.title || values.title.length < 3) {
+    error.title = "enter the title that is at least 3 characters"
+  }
+  if (!values.categories) {
+    error.categories = "enter the categories"
+  }
+  if (!values.content) {
+    error.content = "enter the content"
+  }
+
+
+  return error;
+}
+
+export default reduxForm({
+  validate,
+  form: 'PostNewForm'
+
+})(PostNew)
 
 
