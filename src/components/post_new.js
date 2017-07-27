@@ -22,17 +22,24 @@ renderField(field){
           {...field.input}
         
         />
+        {field.meta.error}
       </div>
     )
 }
 
+onSubmit(values){
+  console.log(values)
+}
+
   render() {
+    console.log(this.props, 'popopo')
+    const {handleSubmit} = this.props
     return (
     <div>
        <div className="text-xs-right">
            <Link to="/" className="btn btn-primary">Back to Main Page</Link>
         </div>
-      <form>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field 
           label="Title For Post"
           name="title" 
@@ -48,6 +55,7 @@ renderField(field){
           label="Post Content"
           component={this.renderField}
         />
+        <button type="submit" className="btn btn-primary">Save</button>
       </form>
     </div>
     );
@@ -59,9 +67,6 @@ renderField(field){
 
 function validate(values){
   const error = {}
-
-
-
   if (!values.title || values.title.length < 3) {
     error.title = "enter the title that is at least 3 characters"
   }
@@ -71,8 +76,6 @@ function validate(values){
   if (!values.content) {
     error.content = "enter the content"
   }
-
-
   return error;
 }
 
