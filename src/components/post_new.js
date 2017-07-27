@@ -16,9 +16,15 @@ import { reducer as formReducer } from 'redux-form'
 
   render() {
     return (
-      <div>
-        test new post
-      </div>
+      <form>
+        <Field 
+          name="title" 
+          component={}
+          
+          
+          />
+         
+      </form>
     );
   }
 }
@@ -26,9 +32,6 @@ import { reducer as formReducer } from 'redux-form'
 
 
 
-function  mapStateToProps(state){
-  return {posts: state.posts}
-}
-
-
-export default connect(mapStateToProps, {fetchPosts})(PostNew);
+export default reduxForm(
+  {form: 'PostNewForm'}
+)(PostNew)
