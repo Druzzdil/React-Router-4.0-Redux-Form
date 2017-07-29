@@ -1,4 +1,4 @@
-import {FETCH_POST, SHOW_SINGLE_POST} from '../actions/index';
+import {FETCH_POST, SHOW_SINGLE_POST, DELETE_POST} from '../actions/index';
 import _ from 'lodash';
 
 export default function(state = {} , action){
@@ -9,6 +9,8 @@ export default function(state = {} , action){
             return { ...state, [action.payload.data.id]: action.payload.data };
         case FETCH_POST:
             return _.mapKeys(action.payload.data, "id");
+        case DELETE_POST:
+            return action.payload.data.id;
         default:
             return state;
     }
