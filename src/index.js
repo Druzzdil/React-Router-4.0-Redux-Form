@@ -8,8 +8,10 @@ import reducers from './reducers';
 import promise from 'redux-promise';
 import PostNew from './components/post_new';
 import PostShow from './components/post_show';
+import thunk from 'redux-thunk'
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
+const createStoreWithMiddleware = applyMiddleware(thunk, promise)(createStore);
 // take a look at this a bit closer
 
 

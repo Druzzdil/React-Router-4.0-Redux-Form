@@ -12,10 +12,12 @@ const API_KEY = '?key=DUNE321'
 
 export function fetchPosts(){
     const request = axios.get(`${ROOT_API}/posts${API_KEY}`);
-    return {
-        type: FETCH_POST,
-        payload: request
+        return (dispatch) => {
+        request.then((data) =>{
+            dispatch({type: 'FETCH_POST', payload: data})
+        });
     }
+
 }
 
 export function createPost(values, callback){
