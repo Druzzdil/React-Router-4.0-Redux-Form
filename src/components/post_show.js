@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { showSinlePost } from '../actions/index';
+import { showSinglePost } from '../actions/index';
 //import _ from 'lodash';
 //import { Field, reduxForm } from 'redux-form'
 //import {createPost} from '../actions';
@@ -13,27 +13,32 @@ import {Link}  from 'react-router-dom'
 class PostShow extends Component {
   constructor(props){
     super(props)
+    // this.state = {
+    //     title: {},
+    //     categories: "",
+    //     content: ""
+    // }
   }
 
 componentDidMount() {
-    this.props.showSinlePost();
+    const {id} = this.props.match.params
+    // get the id from the params object which is provide by react router by itself
+    this.props.showSinglePost(id);
 }
 
-
-renderPost(){
-     return _.map(this.props.posts, post => {
-       return (
-          <li className="list-group-item"key={post.id}>{post.id}</li>
-        )
-     })
-  }
-
-
   render() {
+    console.log(this.props.showSinglePost(), 'ppppppp')
+    const { post } = this.props;
+
+    if (!post) {
+        return <div>Loading...</div>
+    }
+
     return (
     <div>
-        show new post
-        {this.renderPost()}}
+        <h3>Title: {post.title}</h3>
+        <h6>Categories: {post.categories}</h6>
+        <h6>{post.content}</h6>
     </div>
     );
   }
@@ -42,8 +47,6 @@ renderPost(){
 
 //helpers functions
 
-
-
 function mapStateToProps({ posts }, ownProps) {
   return {
     post: posts[ownProps.match.params.id]
@@ -51,7 +54,7 @@ function mapStateToProps({ posts }, ownProps) {
 }
 
 
-export default connect(mapStateToProps, {showSinlePost})(PostShow);
+export default connect(mapStateToProps, {showSinglePost})(PostShow);
 
 
 
