@@ -22,7 +22,12 @@ import {Link}  from 'react-router-dom'
   renderPost(){
      return _.map(this.props.posts, post => {
        return (
-          <li className="list-group-item"key={post.id}>{post.content}</li>
+
+          <li className="list-group-item"key={post.id}>
+            <Link to={`/post/${post.id}`}>
+                {post.title}
+            </Link>
+          </li>
         )
      })
   }

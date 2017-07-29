@@ -36,7 +36,8 @@ componentDidMount() {
 
     return (
     <div>
-        <h3>Title: {post.title}</h3>
+    <Link to="/">Back to list</Link>
+        <h5>Title: {post.title}</h5>
         <h6>Categories: {post.categories}</h6>
         <h6>{post.content}</h6>
     </div>
