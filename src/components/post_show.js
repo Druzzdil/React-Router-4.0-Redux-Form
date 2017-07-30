@@ -56,7 +56,7 @@ onDeleteClick(){
 function mapStateToProps({ posts }, ownProps) {
   return {
     post: posts[ownProps.match.params.id]
-  };
+  }
 }
 
 
