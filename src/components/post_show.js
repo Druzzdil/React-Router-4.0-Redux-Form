@@ -28,7 +28,7 @@ onDeleteClick(){
     this.props.deletePost(id, ()=>{
       this.props.history.push('/');
     })
-
+//url support
 }
 
   render() {
